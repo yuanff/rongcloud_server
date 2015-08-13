@@ -58,4 +58,4 @@ class DataBase {
 		}
 		return $stmt;
 	}
-}Enter file contents here
+}
