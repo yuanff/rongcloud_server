@@ -67,4 +67,3 @@ final class Mobile extends BaseType{
 			throw new Exception("this value is not Mobile");
 	}
 }
-Enter file contents here
