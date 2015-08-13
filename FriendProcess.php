@@ -149,4 +149,4 @@ function get_friend(){
 	$friends = $db->fetchAll('SELECT A.`id`,`email`,`username`,`portrait`,`status` FROM `friend` INNER JOIN `user` AS A ON `friend_id`=A.`id` WHERE `user_id`=?;'
 	, getCurrentUserId());
 	return $friends;
-}Enter file contents here
+}
