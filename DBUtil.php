@@ -66,6 +66,10 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB AUTO_INCREMENT=2543 DEFAULT CHARSET=utf8mb4;");
 	}
 
+	function __construct($dsn, $user, $password){
+	        $this->dbh = new PDO($dsn, $user, $password);
+	        $this->dbh->exec("SET NAMES utf8");
+	}
 	public function fetch($sql){
 		$stmt = $this->prepare(func_get_args());
 		$stmt->execute();
