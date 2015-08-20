@@ -1,4 +1,5 @@
 <?php
+require('./Helper.php');
 class DataBase {
 	private static $db = NULL;
 
@@ -10,6 +11,13 @@ class DataBase {
 	private $dbh;
 
 	function __construct($dsn, $user, $password){
+	   $serverName = env("MYSQL_PORT_3306_TCP_ADDR", "localhost");
+           $databaseName = env("MYSQL_INSTANCE_NAME", "homestead");
+           $username = env("MYSQL_USERNAME", "homestead");
+           $password = env("MYSQL_PASSWORD", "secret");
+           $this->pdo = new PDO("mysql:host=$serverName;dbname=$databaseName", $username, $password);
+
+            $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	   $this->dbh = new PDO($dsn, $user, $password);
 	   $this->dbh->exec("SET NAMES utf8");
 	   $this->dbh->exec("DROP TABLE IF EXISTS `friend`;
