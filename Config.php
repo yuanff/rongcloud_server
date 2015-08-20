@@ -1,8 +1,8 @@
 <?php
 //数据库连接
-define("DB_DNS","mysql:host=127.0.0.1;dbname=demoserver");
-define("DB_USER","xxxx");
-define("DB_PASSWORD","xxxxxxxx");
+define("DB_DNS","mysql:host=os.getenv('MYSQL_PORT_3306_TCP_ADDR'):(os.getenv('MYSQL_PORT_3306_TCP_PORT'));dbname=HStxK1VE59qDzBwc");
+define("DB_USER","ux3kCH71joiuAMyT");
+define("DB_PASSWORD","pzfYInNaP3SMu8c7s");
 
 //融云API地址
 define("RONGCLOUD_API_URL","http://api.cn.rong.io");
