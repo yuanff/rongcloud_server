@@ -10,6 +10,7 @@ include('Annotation.php');//标注
 include('UserAnnotation.php');//标注
 include('ServerAPI.php');//标注
 
+$db = new DataBase();
 //查找方法标注
 function getAnnotation(Reflector $ref){
 	$doc = $ref->getDocComment();
