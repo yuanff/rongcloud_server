@@ -12,6 +12,51 @@ class DataBase {
 	function __construct($dsn, $user, $password){
 	   $this->dbh = new PDO($dsn, $user, $password);
 	   $this->dbh->exec("SET NAMES utf8");
+	   $this->dbh->exec("DROP TABLE IF EXISTS `friend`;
+CREATE TABLE `friend` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `friend_id` int(11) NOT NULL,
+  `status` int(11) NOT NULL DEFAULT '0',
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `NewIndex1` (`user_id`,`friend_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=366 DEFAULT CHARSET=utf8mb4;");
+          $this->dbh->exec("DROP TABLE IF EXISTS `group`;
+CREATE TABLE `group` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(64) NOT NULL,
+  `portrait` varchar(128) DEFAULT NULL,
+  `introduce` varchar(256) DEFAULT NULL,
+  `number` int(11) NOT NULL DEFAULT '1',
+  `max_number` int(11) NOT NULL DEFAULT '500',
+  `create_user_id` int(11) NOT NULL,
+  `creat_datetime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4;");
+	  $this->dbh->exec("DROP TABLE IF EXISTS `group_user`;
+CREATE TABLE `group_user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `group_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `role` int(11) NOT NULL,
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `NewIndex1` (`group_id`),
+  KEY `NewIndex2` (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=311 DEFAULT CHARSET=utf8mb4;");
+	  $this->dbh->exec("DROP TABLE IF EXISTS `user`;
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `email` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `username` varchar(32) NOT NULL,
+  `portrait` varchar(128) NOT NULL,
+  `passwd` varchar(32) NOT NULL,
+  `createdTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '创建时间',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email` (`email`),
+  KEY `username` (`username`)
+) ENGINE=InnoDB AUTO_INCREMENT=2543 DEFAULT CHARSET=utf8mb4;");
 	}
 
 	public function fetch($sql){
