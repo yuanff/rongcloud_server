@@ -1,22 +1,19 @@
 # 使用官方 PHP-Apache 镜像
-FROM php
+FROM daocloud.io/php:5.6-fpm
+# Install modules
+RUN apt-get update && apt-get install -y \
+        libfreetype6-dev \
+        libjpeg62-turbo-dev \
+        libmcrypt-dev \
+        libpng12-dev \
+    && docker-php-ext-install iconv mcrypt \
+    && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
+    && docker-php-ext-install gd
 
 # docker-php-ext-install 为官方 PHP 镜像内置命令，用于安装 PHP 扩展依赖
 # pdo_mysql 为 PHP 连接 MySQL 扩展
 RUN docker-php-ext-install pdo_mysql
-RUN apt-get update \ 
-    && apt-get -y install \ 
-       curl \ 
-       wget \ 
-       apache2 \ 
-       libapache2-mod-php5 \ 
-       php5-mysql \ 
-       php5-sqlite \ 
-       php5-gd \ 
-       php5-curl \ 
-       php-pear \ 
-       php-apc \ 
-       php5-mcrypt
+
  
 
 # mysql config
@@ -26,4 +23,4 @@ WORKDIR /usr/src/app
 COPY . /usr/src/app 
 
 EXPOSE 80  
-ENTRYPOINT ["php", "-S", "0.0.0.0:80"]
+ENTRYPOINT ["php-fpm", "-S", "0.0.0.0:80"]
