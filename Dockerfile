@@ -11,3 +11,4 @@ WORKDIR /usr/src/app
 COPY . /usr/src/app 
 
 EXPOSE 80  
+ENTRYPOINT ["php", "-S", "0.0.0.0:80"]
