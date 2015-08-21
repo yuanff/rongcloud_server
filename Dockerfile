@@ -1,5 +1,5 @@
 # 使用官方 PHP-Apache 镜像
-FROM daocloud.io/php:5.6-fpm
+FROM php
 # Install modules
 RUN apt-get update && apt-get install -y \
         libfreetype6-dev \
@@ -23,5 +23,5 @@ WORKDIR /usr/src/app
 COPY . /usr/src/app 
 
 EXPOSE 80  
-#ENTRYPOINT ["php-fpm", "-S", "0.0.0.0:80"]
-CMD ["php-fpm"]
+ENTRYPOINT ["php", "-S", "0.0.0.0:80"]
+
