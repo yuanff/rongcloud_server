@@ -23,4 +23,5 @@ WORKDIR /usr/src/app
 COPY . /usr/src/app 
 
 EXPOSE 80  
-ENTRYPOINT ["php-fpm", "-S", "0.0.0.0:80"]
+#ENTRYPOINT ["php-fpm", "-S", "0.0.0.0:80"]
+CMD ["php-fpm"]
