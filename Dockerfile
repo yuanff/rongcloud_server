@@ -17,7 +17,6 @@ RUN apt-get update \
        php-pear \ 
        php-apc \ 
        php5-mcrypt
-RUN docker-php-ext-install php5-mcrypt
  
 
 # mysql config
