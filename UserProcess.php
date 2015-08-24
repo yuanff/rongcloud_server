@@ -42,7 +42,7 @@ function email_login(Email $email, String $password){
 			setUserCredential($user['id']);
 			$user['status'] = 1;
 			unset($user['passwd']);
-			return json_encode($user);
+			return $user;
 		}
 	} else {
 		throw new ProException('email or password is error', 104);
