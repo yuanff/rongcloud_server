@@ -93,9 +93,6 @@ function reg(Email $email,/* Mobile $mobile,*/ String $username, String $passwor
 		$portrait = 'http://www.gravatar.com/avatar/'.md5(strtolower(trim($email))).'?s=82&d=wavatar';
 		$db->insert('INSERT INTO `user` (`email`, `username`, `portrait`, `passwd`) values(?,?,?,?)', $email, $username, $portrait, $password);
 		//send_activatiton_code($mobile);
-		return jsonify({ 
-				'result':'200', 
- 				});
 
 	}
 }
